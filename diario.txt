@@ -1,0 +1,12 @@
+20190916
+  Inicio de repositorio "ad" en github. 
+    Usuario: FdezGuillen, contactaguillen@gmail.com
+    Con README
+    .gitignore: VisualStudio
+    Dirección: https://github.com/FdezGuillen/ad.git
+  Clonar en home. git clone https://github.com/FdezGuillen/ad.git
+  Git config: 
+	git config --global user.name FdezGuillen
+	git config --global user.email contactaguillen@gmail.com
+
+
