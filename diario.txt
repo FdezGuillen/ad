@@ -8,5 +8,17 @@
   Git config: 
 	git config --global user.name FdezGuillen
 	git config --global user.email contactaguillen@gmail.com
+        git config --global push.default simple
+
+  Ayuda: git "comando" --help
+  Nuevo archivo
+	git add nombrearchivo ( o git add .)
+	git commit -m "descripcion"
+	git push
+
+  Otros
+	git log
+	git diff
+	git status
 
 
