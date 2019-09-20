@@ -21,4 +21,11 @@
 	git diff
 	git status
 
+20190920
+  Creación de máquina virtual Ubuntu
+  Anadido notas.txt
+  
+
+
+
 
