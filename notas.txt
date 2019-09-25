@@ -1,1 +1,15 @@
 En MonoDevelop, para abrir otro proyecto hay que abrir el archivo .sln 
+
+  ss -ln | grep 3306
+
+****23-09-2019
+PROYECTO C# CON ACCESO A DATOS:
+  En Monodevelop
+  Click der. en referencias > Ensamblado .NET > Examinar > Cargar MySQL Connector, Renci.sshnet.dll
+  En referencias > todo, cargar System.data
+  Se puede descargar MySQL Connector ADO.NET Driver (.NET & Mono): https://www.mysql.com/products/connector/
+  En la clase Main: crear objeto MySqlConnection, pasar un connection string por parámetro
+  Abrir con nombreconexion.Open();
+
+****25-09-2019
+

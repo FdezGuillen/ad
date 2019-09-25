@@ -23,9 +23,14 @@
 
 20190920
   Creación de máquina virtual Ubuntu
+    RAM 2048 MB, Disco 20GB, Procesadores: 2
+    usuario: administrador/sistemas
   Anadido notas.txt
   
-
-
+20190923
+  Instaladas Guest Additions y actualización en máquina virtual Ubuntu.
+  Instalado LAMP. root/sistemas
+  Creada base de datos: dbprueba
+  Creada tabla categoria y añadido datos
 
 
