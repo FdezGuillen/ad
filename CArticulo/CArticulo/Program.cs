@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using MySql.Data.MySqlClient;
+using Serpis.Ad;
 
 namespace CArticulo
 {
@@ -14,21 +15,55 @@ namespace CArticulo
             Console.WriteLine("Acceso a dbprueba");
 
             dbConnection.Open();
-
-            InsertValue();
-            ShowAll();
-            ShowMetaInfo();
+            Menu();
+            //InsertValue();
+            //ShowAll();
+            //ShowMetaInfo();
             dbConnection.Close();
-
         }
 
-        public static void ShowAll() {
+        public static void Menu() {
+            Console.WriteLine("****GESTIÓN DE ARTÍCULOS****");
+            Console.WriteLine("1.- Crear nuevo artículo\n"
+                + "2.- Modificar artículo\n"
+                + "3.- Eliminar artículo\n"
+                + "4.- Consultar artículo\n" +
+                    "5.- Listar artículos \n" +
+                    "0.- Salir");
+            int entero = readInteger("Seleccione una opción: ");
+
+            switch (entero) {
+                case 5:
+                    listar();
+                    break;
+            }
+        }
+
+        public static int readInteger(String label) {
+            int entero = -1;
+
+            while (entero == -1) {
+                try {
+                    Console.WriteLine(label);
+                    String linea = Console.ReadLine();
+                    entero = Int32.Parse(linea);
+                }
+                catch {
+                    Console.WriteLine("Entrada no válida. Por favor, vuelve a intentarlo.\n");
+                }
+            }
+
+            return entero;
+        }
+
+        public static void listar() {
             IDbCommand dbCommand = dbConnection.CreateCommand();
-            dbCommand.CommandText = "select * from categoria";
+            dbCommand.CommandText = "select * from articulo";
             IDataReader dataReader = dbCommand.ExecuteReader();
 
             while (dataReader.Read()) {
-                Console.WriteLine("id={0} nombre={1}", dataReader["id"], dataReader["nombre"]);
+                Console.WriteLine("id={0} nombre={1} precio={2} id categoria={3}", dataReader["id"], dataReader["nombre"], 
+                    dataReader["precio"], dataReader["idCategoria"]);
             }
 
             dataReader.Close();
