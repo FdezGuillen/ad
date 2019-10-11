@@ -33,4 +33,11 @@
   Creada base de datos: dbprueba
   Creada tabla categoria y añadido datos
 
+20191011
+  Proyectos actuales:
+	CMySql (recoge y muestra categorías de la base de datos)
+	CArticulo (desde consola, se puede leer, añadir, editar o eliminar artículos)
+	CSerpisAd (librería)
+	CGtk (aplicación con acceso a datos, interfaz visual)
+
 
