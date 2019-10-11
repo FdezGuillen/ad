@@ -41,7 +41,6 @@ namespace CArticulo
             while (dataReader.Read()) {
                 Console.WriteLine("id={0} nombre={1} precio={2} id categoria={3}", dataReader["id"], dataReader["nombre"], 
                         dataReader["precio"], dataReader["idCategoria"]);
-
             }
 
             dataReader.Close();
