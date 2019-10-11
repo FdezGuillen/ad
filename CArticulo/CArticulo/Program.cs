@@ -32,38 +32,6 @@ namespace CArticulo
         }
 
    
-        public static int readInteger(String label) {
-            int entero = -1;
-
-            while (entero == -1) {
-                try {
-                    Console.WriteLine(label);
-                    String linea = Console.ReadLine();
-                    entero = Int32.Parse(linea);
-                }
-                catch {
-                    Console.WriteLine("Entrada no válida. Por favor, vuelve a intentarlo.\n");
-                }
-            }
-            return entero;
-        }
-
-        public static Decimal readDecimal(String label) {
-            Decimal dec = -1;
-
-            while (dec == -1) {
-                try {
-                    Console.WriteLine(label);
-                    String linea = Console.ReadLine();
-                    dec = Decimal.Parse(linea);
-                }
-                catch {
-                    Console.WriteLine("Entrada no válida. Por favor, vuelve a intentarlo.\n");
-                }
-            }
-            return dec;
-        }
-
 
         public static void ListarArticulo() {
             IDbCommand dbCommand = dbConnection.CreateCommand();
@@ -103,9 +71,9 @@ namespace CArticulo
                 Console.WriteLine("Nombre del artículo: ");
                 nombre = Console.ReadLine();
 
-                precio = readDecimal("Precio del artículo: ");
+                precio = ConsoleHelper.ReadDecimal("Precio del artículo: ");
 
-                idCategoria = readInteger("ID de la categoría: ");
+                idCategoria = ConsoleHelper.ReadInteger("ID de la categoría: ");
 
                 DbCommandHelper.AddParameter(dbCommand, "nombre", nombre);
                 DbCommandHelper.AddParameter(dbCommand, "precio", precio);
@@ -133,7 +101,7 @@ namespace CArticulo
             	"where id = @id";
 
             try {
-                id = readInteger("ID del artículo a modificar: ");
+                id = ConsoleHelper.ReadInteger("ID del artículo a modificar: ");
 
                 Console.WriteLine("Datos actuales del artículo: ");
                 bool articuloExists = Consultar(id);
@@ -144,9 +112,9 @@ namespace CArticulo
                 Console.WriteLine("Nombre del artículo: ");
                 nombre = Console.ReadLine();
 
-                precio = readDecimal("Precio del artículo: ");
+                precio = ConsoleHelper.ReadDecimal("Precio del artículo: ");
 
-                idCategoria = readInteger("ID de la categoría: ");
+                idCategoria = ConsoleHelper.ReadInteger("ID de la categoría: ");
 
                 DbCommandHelper.AddParameter(dbCommand, "nombre", nombre);
                 DbCommandHelper.AddParameter(dbCommand, "precio", precio);
@@ -170,7 +138,7 @@ namespace CArticulo
             dbCommand.CommandText = "delete from articulo where id = @id";
 
             try {
-                id = readInteger("ID del artículo a eliminar: ");
+                id = ConsoleHelper.ReadInteger("ID del artículo a eliminar: ");
 
                 Console.WriteLine("Datos del artículo: ");
                 bool articuloExists = Consultar(id);
@@ -207,7 +175,7 @@ namespace CArticulo
             dbCommand.CommandText = "select * from articulo where id=@id";
 
             try {
-                int id = readInteger("ID del artículo: ");
+                int id = ConsoleHelper.ReadInteger("ID del artículo: ");
 
                 DbCommandHelper.AddParameter(dbCommand, "id", id);
 
