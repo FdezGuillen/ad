@@ -3,6 +3,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using Serpis.Ad;
 
+
 namespace CArticulo
 {
     class MainClass
@@ -11,57 +12,26 @@ namespace CArticulo
                 "server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none"
                 );
 
+        
         public static void Main(string[] args) {
             Console.WriteLine("Acceso a dbprueba");
 
             dbConnection.Open();
-            Menu();
-            //InsertValue();
-            //ShowAll();
-            //ShowMetaInfo();
+            
+            Menu.Create("****GESTIÓN DE ARTÍCULOS****")
+              .Add("1.- Crear nuevo artículo", Nuevo)
+              .Add("2.- Modificar artículo", Modificar)
+              .Add("3.- Eliminar artículo", Eliminar)
+              .Add("4.- Consultar artículo", Consultar)
+              .Add("5.- Listar artículos", ListarArticulo)
+              .Add("6. - Listar categorías", ListarCategoria)
+              .ExitWhen("0.- Salir")
+              .Loop();
+
             dbConnection.Close();
         }
 
-        public static void Menu() {
-            Console.WriteLine("****GESTIÓN DE ARTÍCULOS****");
-            Console.WriteLine("1.- Crear nuevo artículo\n"
-                + "2.- Modificar artículo\n"
-                + "3.- Eliminar artículo\n"
-                + "4.- Consultar artículo\n" +
-                    "5.- Listar artículos \n" +
-                    "6. - Listar categorías \n " +
-                    "0.- Salir");
-            int entero = readInteger("Seleccione una opción: ");
-
-            switch (entero) {
-                case 1:
-                    Nuevo();
-                    break;
-
-                case 2:
-                    Modificar();
-                    break;
-
-                case 3:
-                    Eliminar();
-                    break;
-
-                case 4:
-                    Consultar();
-                    break;
-
-                case 5:
-                    Listar("articulo");
-                    break;
-
-                case 6:
-                    Listar("categoria");
-                    break;
-
-                    //todo: listarCategoria
-            }
-        }
-
+   
         public static int readInteger(String label) {
             int entero = -1;
 
@@ -95,16 +65,26 @@ namespace CArticulo
         }
 
 
-        public static void Listar(string tabla) {
+        public static void ListarArticulo() {
             IDbCommand dbCommand = dbConnection.CreateCommand();
-            dbCommand.CommandText = "select * from " + tabla;
+            dbCommand.CommandText = "select * from articulo";
             IDataReader dataReader = dbCommand.ExecuteReader();
 
             while (dataReader.Read()) {
-                if (tabla.Equals("articulo"))
-                    Console.WriteLine("id={0} nombre={1} precio={2} id categoria={3}", dataReader["id"], dataReader["nombre"], 
+                Console.WriteLine("id={0} nombre={1} precio={2} id categoria={3}", dataReader["id"], dataReader["nombre"], 
                         dataReader["precio"], dataReader["idCategoria"]);
-                else if (tabla.Equals("categoria"))
+
+            }
+
+            dataReader.Close();
+        }
+
+        public static void ListarCategoria() {
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = "select * from categoria";
+            IDataReader dataReader = dbCommand.ExecuteReader();
+
+            while (dataReader.Read()) {
                     Console.WriteLine("id={0} nombre={1} ", dataReader["id"], dataReader["nombre"]);
             }
 
@@ -221,15 +201,39 @@ namespace CArticulo
 
         }
 
-        public static bool Consultar(int? id = null) {
+        public static void Consultar() {
+
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = "select * from articulo where id=@id";
+
+            try {
+                int id = readInteger("ID del artículo: ");
+
+                DbCommandHelper.AddParameter(dbCommand, "id", id);
+
+                IDataReader dataReader = dbCommand.ExecuteReader();
+                if (dataReader.Read()) {
+                    Console.WriteLine("id={0} nombre={1} precio={2} id categoria={3}", dataReader["id"], dataReader["nombre"],
+                        dataReader["precio"], dataReader["idCategoria"]);
+                }
+                else {
+                    throw new Exception("No existe ningún artículo con este ID.");
+                }
+                dataReader.Close();
+            }
+            catch (Exception e) {
+                Console.WriteLine("ERROR. {0}", e);
+            }
+
+        }
+
+        public static bool Consultar(int id) {
 
             bool recordExists = false;
             IDbCommand dbCommand = dbConnection.CreateCommand();
             dbCommand.CommandText = "select * from articulo where id=@id";
 
             try {
-                if (id is null)
-                    id = readInteger("ID del artículo a modificar: ");
 
                 DbCommandHelper.AddParameter(dbCommand, "id", id);
 
