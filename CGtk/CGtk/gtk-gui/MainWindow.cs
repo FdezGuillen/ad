@@ -32,8 +32,10 @@ public partial class MainWindow
 		this.newAction = new global::Gtk.Action("newAction", null, null, "gtk-new");
 		w1.Add(this.newAction, null);
 		this.editAction = new global::Gtk.Action("editAction", null, null, "gtk-edit");
+		this.editAction.Sensitive = false;
 		w1.Add(this.editAction, null);
 		this.deleteAction = new global::Gtk.Action("deleteAction", null, null, "gtk-delete");
+		this.deleteAction.Sensitive = false;
 		w1.Add(this.deleteAction, null);
 		this.refreshAction = new global::Gtk.Action("refreshAction", null, null, "gtk-refresh");
 		w1.Add(this.refreshAction, null);

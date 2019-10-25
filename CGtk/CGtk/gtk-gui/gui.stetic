@@ -16,11 +16,13 @@
       <action id="editAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="Sensitive">False</property>
         <property name="StockId">gtk-edit</property>
       </action>
       <action id="deleteAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
+        <property name="Sensitive">False</property>
         <property name="StockId">gtk-delete</property>
       </action>
       <action id="refreshAction">
@@ -96,7 +98,7 @@
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
             <child>
-              <widget class="Gtk.Entry" id="entry1">
+              <widget class="Gtk.Entry" id="entryNombre">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>

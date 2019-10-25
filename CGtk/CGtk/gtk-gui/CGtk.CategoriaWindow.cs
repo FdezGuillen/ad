@@ -8,7 +8,7 @@ namespace CGtk
 
 		private global::Gtk.Table table1;
 
-		private global::Gtk.Entry entry1;
+		private global::Gtk.Entry entryNombre;
 
 		private global::Gtk.Label labelNombre;
 
@@ -35,13 +35,13 @@ namespace CGtk
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry1 = new global::Gtk.Entry();
-			this.entry1.CanFocus = true;
-			this.entry1.Name = "entry1";
-			this.entry1.IsEditable = true;
-			this.entry1.InvisibleChar = '•';
-			this.table1.Add(this.entry1);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entry1]));
+			this.entryNombre = new global::Gtk.Entry();
+			this.entryNombre.CanFocus = true;
+			this.entryNombre.Name = "entryNombre";
+			this.entryNombre.IsEditable = true;
+			this.entryNombre.InvisibleChar = '•';
+			this.table1.Add(this.entryNombre);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entryNombre]));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
