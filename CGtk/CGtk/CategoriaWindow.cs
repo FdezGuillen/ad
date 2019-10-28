@@ -20,7 +20,7 @@ namespace CGtk
 
         public void Guardar() {
             if (entryNombre.Text != null) {
-                MainWindow.Save(new Categoria(0, entryNombre.Text));
+                CategoriaDao.Save(new Categoria(0, entryNombre.Text));
                 this.Destroy();
             }
 

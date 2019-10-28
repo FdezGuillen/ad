@@ -15,8 +15,8 @@
       </action>
       <action id="editAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
-        <property name="Sensitive">False</property>
+        <property name="Label" translatable="yes">_Editar</property>
+        <property name="ShortLabel" translatable="yes">_Editar</property>
         <property name="StockId">gtk-edit</property>
       </action>
       <action id="deleteAction">
@@ -39,7 +39,6 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />

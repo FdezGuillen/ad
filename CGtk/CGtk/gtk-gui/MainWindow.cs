@@ -31,8 +31,8 @@ public partial class MainWindow
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
 		this.newAction = new global::Gtk.Action("newAction", null, null, "gtk-new");
 		w1.Add(this.newAction, null);
-		this.editAction = new global::Gtk.Action("editAction", null, null, "gtk-edit");
-		this.editAction.Sensitive = false;
+		this.editAction = new global::Gtk.Action("editAction", global::Mono.Unix.Catalog.GetString("_Editar"), null, "gtk-edit");
+		this.editAction.ShortLabel = global::Mono.Unix.Catalog.GetString("_Editar");
 		w1.Add(this.editAction, null);
 		this.deleteAction = new global::Gtk.Action("deleteAction", null, null, "gtk-delete");
 		this.deleteAction.Sensitive = false;
@@ -80,6 +80,5 @@ public partial class MainWindow
 		this.DefaultWidth = 400;
 		this.DefaultHeight = 300;
 		this.Show();
-		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 	}
 }
