@@ -23,7 +23,6 @@ namespace CGtk
                 CategoriaDao.Save(new Categoria(0, entryNombre.Text));
                 this.Destroy();
             }
-
         }
 
     }
