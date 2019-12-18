@@ -7,12 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Categoria {
+public class Articulo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	private Double precio;
+	private Long idCategoria;
 	
 	public Long getId() {
 		return id;
@@ -25,5 +27,19 @@ public class Categoria {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public Double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(Double id) {
+		this.precio = precio;
+	}
+	
+	public Long getIdCategoria() {
+		return idCategoria;
+	}
+	public void setIdCategoria(Long idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 }
