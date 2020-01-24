@@ -1,4 +1,4 @@
-package serpis.ad;
+package serpis.ad.modelos;
 
 
 import javax.persistence.Entity;

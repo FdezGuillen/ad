@@ -1,4 +1,4 @@
-package serpis.ad;
+package serpis.ad.modelos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,12 +12,9 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long fecha;
-	
-    @ManyToOne
-    private Cliente cliente;
-	
-	private Double cantidad;
+	private Long idCliente;
+	private String fecha;
+	private Double importe;
 	
 	public Long getId() {
 		return id;
@@ -26,25 +23,25 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Long getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(Long fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-	public Double getCantidad() {
-		return cantidad;
+	public Long getIdCliente() {
+		return idCliente;
 	}
-	public void setCantidad(Double cantidad) {
-		this.cantidad = cantidad;
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
 	}
-	public Cliente getCliente() {
-		return cliente;
+	public Double getImporte() {
+		return importe;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setImporte(Double importe) {
+		this.importe = importe;
 	}
-	
+
 	
 	
 }
