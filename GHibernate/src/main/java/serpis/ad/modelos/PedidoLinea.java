@@ -1,11 +1,16 @@
 package serpis.ad.modelos;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 @Entity
 public class PedidoLinea implements Serializable{
@@ -13,47 +18,63 @@ public class PedidoLinea implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "pedido")
+	private Pedido pedido;
+	@ManyToOne
+	@JoinColumn(name = "articulo")
+	private Articulo articulo;
+	private BigDecimal precio = BigDecimal.ZERO;
+	private BigDecimal unidades = BigDecimal.ONE;
+	private BigDecimal importe = BigDecimal.ZERO;
 	
-	private Long idPedido;
-	private Long idArticulo;
+	private PedidoLinea() {} //Hibernate necesita un ctor sin parámetros
 	
-	private Double precio;
-	private int unidades;
-	private Double importe;
+	public PedidoLinea(Pedido pedido) {
+		this.pedido = pedido;
+		pedido.getPedidoLineas().add(this);
+	}
 	
 	public Long getId() {
 		return id;
 	}
-	
-	public Long getIdPedido() {
-		return idPedido;
+	public Pedido getPedido() {
+		return pedido;
 	}
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
+	public Articulo getArticulo() {
+		return articulo;
 	}
-	public Long getIdArticulo() {
-		return idArticulo;
+
+	public void setArticulo(Articulo articulo) {
+		precio = articulo.getPrecio();
+		unidades = BigDecimal.ONE;
+		this.articulo = articulo;
 	}
-	public void setIdArticulo(Long idArticulo) {
-		this.idArticulo = idArticulo;
-	}
-	public Double getPrecio() {
+
+	public BigDecimal getPrecio() {
 		return precio;
 	}
-	public void setPrecio(Double precio) {
+
+	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
-	public int getUnidades() {
+
+	public BigDecimal getUnidades() {
 		return unidades;
 	}
-	public void setUnidades(int unidades) {
+
+	public void setUnidades(BigDecimal unidades) {
 		this.unidades = unidades;
 	}
-	public Double getImporte() {
+
+	@PrePersist
+	@PreUpdate
+	private void preGetImporte() {
+		importe = precio.multiply(unidades);
+	}
+	public BigDecimal getImporte() {
+		preGetImporte();
 		return importe;
-	}
-	public void setImporte(Double importe) {
-		this.importe = importe;
-	}
+}
 
 }
