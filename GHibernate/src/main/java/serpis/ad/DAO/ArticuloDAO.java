@@ -29,4 +29,6 @@ public class ArticuloDAO {
 	public static void insert(Articulo articulo) {
 		entityManager.persist(articulo);
 	}
+	
+	//https://www.codejava.net/frameworks/hibernate/hibernate-binary-data-and-blob-mapping-example
 }
