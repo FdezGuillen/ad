@@ -26,6 +26,11 @@ public class ClienteDAO {
 		return list;
 	}
 	
+	public static Cliente getById(Long clientId) {
+		Cliente cliente = entityManager.find(Cliente.class, clientId);
+		return cliente;
+	}
+	
 	public static void insert(Cliente articulo) {
 		entityManager.persist(articulo);
 	}

@@ -35,4 +35,11 @@ public class Conexion {
 		this.entityManager = entityManager;
 	}
 	
+	public void closeConnection() {
+		System.out.println("Desconectando...");
+		entityManager.close();
+		entityManagerFactory.close();
+
+	}
+	
 }

@@ -24,6 +24,13 @@ public class PedidoDAO {
 		return list;
 	}
 	
+	public static List<Pedido> getByCliente(Cliente cliente){
+		List<Pedido> list = entityManager.createQuery("from Pedido where cliente = :cliente order by Fecha", Pedido.class)
+				.setParameter("cliente", cliente)
+				.getResultList();
+		return list;
+	}
+	
 	public static void insert() {
 		Cliente cliente = entityManager.find(Cliente.class, 2L);
 		Pedido pedido = new Pedido(cliente);
