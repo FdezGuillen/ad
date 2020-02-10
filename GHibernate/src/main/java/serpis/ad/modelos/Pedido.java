@@ -60,6 +60,8 @@ public class Pedido {
 	public List<PedidoLinea> getPedidoLineas() {
 		return pedidoLineas;
 }
+	
+	
 
 	
 	

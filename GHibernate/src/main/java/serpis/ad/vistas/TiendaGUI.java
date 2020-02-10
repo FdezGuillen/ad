@@ -62,14 +62,17 @@ public class TiendaGUI {
 	static JPanel userCards;
 	private static final String USUARIO_TITLE = "Usuario";
 	private static final String LOGIN_TITLE = "Login";
+	static JButton botonCarrito;
 	
 	// CARD LAYOUT PANELES
 	static JPanel panelesCards;
 	private static final String ART_TITLE = "Artículos";
 	private static final String PEDIDOS_TITLE = "Pedidos";
+	private static final String CARRITO_TITLE = "Carrito";
 	
 	static //PANEL PEDIDOS
 	PedidosPanel pedidosPanel;
+	static CarritoPanel carritoPanel;
 	
 	public TiendaGUI(Conexion con) {
 		this.con = con;
@@ -114,8 +117,17 @@ public class TiendaGUI {
 				JButton buttonComprar = new JButton("Añadir al pedido");
 				buttonComprar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null,
-								"Para poder comprar tienes que iniciar sesión primero. " + articulo.getNombre());
+						
+						
+						if (TiendaController.getClienteActual() == null) {
+							JOptionPane.showMessageDialog(null,
+									"Para poder comprar tienes que iniciar sesión primero.");
+						}else {
+							TiendaController.addToCarrito(articulo);
+							JOptionPane.showMessageDialog(null,
+									articulo.getNombre() + " se añadió al carrito de compra");
+							botonCarrito.setText("Carrito (" + TiendaController.getCarrito().size() + ")");
+						}
 					}
 				});
 				itemPanel.setBorder(new TitledBorder(articulo.getNombre()));
@@ -132,9 +144,11 @@ public class TiendaGUI {
 		scrollPane.setViewportView(artPanel);
 		
 		pedidosPanel = new PedidosPanel();
+		carritoPanel = new CarritoPanel();
 		panelesCards = new JPanel(new CardLayout());
 		panelesCards.add(scrollPane, ART_TITLE);
         panelesCards.add(pedidosPanel, PEDIDOS_TITLE);
+        panelesCards.add(carritoPanel, CARRITO_TITLE);
         changePanelesCard(ART_TITLE);
 		
 		
@@ -236,10 +250,14 @@ public class TiendaGUI {
 		JPanel panel = new JPanel(); // el panel no está visible en la salida
 		labelCliente = new JLabel("Bienvenid@, ");
 
-		JButton botonCarrito = new JButton("Carrito");
+		botonCarrito = new JButton("Carrito");
 		botonCarrito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO
+				if (TiendaController.getCarrito().size() > 0) {
+					TiendaController.showCarrito();
+				}else {
+					JOptionPane.showMessageDialog(null, "El carrito está vacío");
+				}
 			}
 		});
 		
@@ -305,6 +323,10 @@ public class TiendaGUI {
 		return LOGIN_TITLE;
 	}
 
+	public static String getCarritoTitle() {
+		return CARRITO_TITLE;
+	}
+
 	public static String getArtTitle() {
 		return ART_TITLE;
 	}
@@ -321,6 +343,18 @@ public class TiendaGUI {
 		TiendaGUI.pedidosPanel = pedidosPanel;
 	}
 	
+	public static void initCarrito() {
+		botonCarrito.setText("Carrito");
+		changePanelesCard(ART_TITLE);
+	}
+
+	public static CarritoPanel getCarritoPanel() {
+		return carritoPanel;
+	}
+
+	public static void setCarritoPanel(CarritoPanel carritoPanel) {
+		TiendaGUI.carritoPanel = carritoPanel;
+	}
 	
 
 }

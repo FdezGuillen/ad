@@ -45,4 +45,8 @@ public class PedidoDAO {
 		entityManager.persist(pedido);
 }
 	
+	public static void insert(Pedido pedido) {
+		entityManager.persist(pedido);
+	}
+	
 }
