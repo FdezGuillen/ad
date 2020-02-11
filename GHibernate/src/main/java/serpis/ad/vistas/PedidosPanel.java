@@ -27,7 +27,7 @@ import serpis.ad.modelos.PedidoLinea;
 public class PedidosPanel extends JPanel{
 	
 	JLabel labelTitulo;
-	DefaultTableModel model;
+	static DefaultTableModel model;
 	DefaultTableModel modelLineas;
 	JTable tabla;
 	JPanel panelDetalle;
@@ -123,6 +123,8 @@ public class PedidosPanel extends JPanel{
 			};
 			model.addRow(dato);
 		}
+		
+		revalidate();
 	}
 	
 	public void setDetailData(int index) {
@@ -143,6 +145,10 @@ public class PedidosPanel extends JPanel{
 			};
 			modelLineas.addRow(dato);
 		}
+	}
+	
+	public static void removeRow(int index) {
+		model.removeRow(index);
 	}
 
 }

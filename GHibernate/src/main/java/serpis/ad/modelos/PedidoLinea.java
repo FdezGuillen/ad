@@ -77,4 +77,10 @@ public class PedidoLinea implements Serializable{
 		return importe;
 }
 
+	@Override
+	public String toString() {
+		return "PedidoLinea [id=" + id + ", pedido=" + pedido + ", articulo=" + articulo + ", precio=" + precio
+				+ ", unidades=" + unidades + ", importe=" + importe + "]";
+	}
+
 }

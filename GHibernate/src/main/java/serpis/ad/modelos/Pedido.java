@@ -60,9 +60,10 @@ public class Pedido {
 	public List<PedidoLinea> getPedidoLineas() {
 		return pedidoLineas;
 }
-	
-	
 
-	
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", fecha=" + fecha + ", importe=" + importe + ", cliente=" + cliente;
+	}
 	
 }

@@ -10,12 +10,15 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import serpis.ad.controladores.TiendaController;
+
 class ButtonEditor extends DefaultCellEditor {
 
     protected JButton button;
     private String label;
     private boolean isPushed;
 
+    private int pushedRow;
     public ButtonEditor(JCheckBox checkBox) {
         super(checkBox);
         button = new JButton();
@@ -38,8 +41,9 @@ class ButtonEditor extends DefaultCellEditor {
             button.setForeground(table.getForeground());
             button.setBackground(table.getBackground());
         }
+        
+        pushedRow = row;
         label = (value == null) ? "" : value.toString();
-        button.setText("Eliminar");
         isPushed = true;
         return button;
     }
@@ -47,7 +51,14 @@ class ButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, label + ": Ouch!");
+        	int res = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar este pedido?", 
+        			"Eliminar pedido",
+        		      JOptionPane.YES_NO_OPTION,
+        		      JOptionPane.PLAIN_MESSAGE);
+        		      if(res == 0) {
+        		    	 PedidosPanel.removeRow(pushedRow);
+        		         TiendaController.eliminarPedido(pushedRow);
+        		      } 
         }
         isPushed = false;
         return label;

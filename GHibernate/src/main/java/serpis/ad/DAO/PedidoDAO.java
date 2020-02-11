@@ -46,7 +46,26 @@ public class PedidoDAO {
 }
 	
 	public static void insert(Pedido pedido) {
-		entityManager.persist(pedido);
+		
+		System.out.println(pedido);
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(pedido);
+			entityManager.getTransaction().commit();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	public static void delete(Pedido pedido) {
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.remove(pedido);
+			entityManager.getTransaction().commit();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }

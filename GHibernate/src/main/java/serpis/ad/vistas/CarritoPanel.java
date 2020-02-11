@@ -20,6 +20,7 @@ public class CarritoPanel extends JPanel {
 
 	DefaultTableModel model;
 	JTable tabla;
+	JLabel labelImporte;
 
 	public CarritoPanel() {
 
@@ -41,21 +42,20 @@ public class CarritoPanel extends JPanel {
 		// Add the scroll pane to this panel.
 		add(scrollPane, BorderLayout.CENTER);
 		
+		JPanel panelConfirmar = new JPanel(new BorderLayout(10,10));
+		labelImporte = new JLabel();
+		panelConfirmar.add(labelImporte, BorderLayout.NORTH);
+		
 		JButton botonConfirmar = new JButton("Confirmar pedido");
 		botonConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
 					TiendaController.confirmarPedido();
-					JOptionPane.showMessageDialog(null,
-							"Pedido realizado con éxito. ¡Gracias por tu compra!");
-				}catch (Exception exc) {
-					JOptionPane.showMessageDialog(null,
-							"Ha habido un error con tu pedido.");
-				}
 			}
 		});
 		
-		add(botonConfirmar, BorderLayout.SOUTH);
+		panelConfirmar.add(botonConfirmar, BorderLayout.CENTER);
+		
+		add(panelConfirmar, BorderLayout.SOUTH);
 	}
 	
 	public void setTableData(Pedido pedido) {
@@ -66,11 +66,15 @@ public class CarritoPanel extends JPanel {
 		    model.removeRow(i);
 		}
 		
+		revalidate();
+		
 		for (PedidoLinea linea: pedido.getPedidoLineas()) {
 			String[] dato = new String[] {
 					linea.getArticulo().getNombre(), linea.getPrecio() + " €", linea.getUnidades().toString(), linea.getImporte() + " €"
 			};
 			model.addRow(dato);
 		}
+		
+		labelImporte.setText("IMPORTE TOTAL: " + pedido.getImporte() + "€");
 	}
 }
