@@ -66,12 +66,18 @@ public class TiendaController {
 	}
 	
 	public static void showPedidos() {
-	
-		pedidos.clear();
-		pedidos = PedidoDAO.getByCliente(clienteActual);
+
+		
+		
 		String pedidosTitle = TiendaGUI.getPedidosTitle();
 		TiendaGUI.changePanelesCard(pedidosTitle);
-		TiendaGUI.getPedidosPanel().setTableData(pedidos);
+		
+		if (pedidos.size() <= 0) {
+			pedidos = PedidoDAO.getByCliente(clienteActual);
+			TiendaGUI.getPedidosPanel().setTableData(pedidos);
+		}
+
+
 	}
 	
 	public static Pedido getPedidoByIndex(int index) {
@@ -154,6 +160,7 @@ public class TiendaController {
 			PedidoDAO.delete(pedidos.get(index));
 			JOptionPane.showMessageDialog(null,
 					"Pedido eliminado con éxito");
+			pedidos.clear();
 			showPedidos();
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null,
@@ -163,8 +170,10 @@ public class TiendaController {
 	
 	public static void vaciarCarrito() {
 		pedidoPendiente = null;
-		carrito.clear();
 		TiendaGUI.initCarrito();
+		carrito.clear();
+		pedidos.clear();
+		
 	}
 	
 }

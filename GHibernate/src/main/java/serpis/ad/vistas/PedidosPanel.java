@@ -37,6 +37,13 @@ public class PedidosPanel extends JPanel{
 	JLabel labelImporte;
 	JTable tablaLineas;
 	// constructor
+	
+	 Object[][] data = new Object[][] {
+         {1, "John", 40.0, false },
+         {2, "Rambo", 70.0, false },
+         {3, "Zorro", 60.0, true },
+     };
+     
 	public PedidosPanel() {
 
 		setLayout(new BorderLayout(10, 10)); // Configura el tipo de layout de JPanel como BorderLayout
@@ -124,7 +131,10 @@ public class PedidosPanel extends JPanel{
 			model.addRow(dato);
 		}
 		
-		revalidate();
+		model.fireTableDataChanged();
+		tabla.repaint();
+			
+
 	}
 	
 	public void setDetailData(int index) {

@@ -355,6 +355,14 @@ public class TiendaGUI {
 	public static void setCarritoPanel(CarritoPanel carritoPanel) {
 		TiendaGUI.carritoPanel = carritoPanel;
 	}
+
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public static void setFrame(JFrame frame) {
+		TiendaGUI.frame = frame;
+	}
 	
 
 }

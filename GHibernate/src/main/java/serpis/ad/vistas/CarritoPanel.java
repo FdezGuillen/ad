@@ -59,15 +59,8 @@ public class CarritoPanel extends JPanel {
 	}
 	
 	public void setTableData(Pedido pedido) {
-		
-		int rowCount = model.getRowCount();
-		//Remove rows one by one from the end of the table
-		for (int i = 0; i < rowCount; i++) {
-		    model.removeRow(i);
-		}
-		
-		revalidate();
-		
+
+		deleteRows();
 		for (PedidoLinea linea: pedido.getPedidoLineas()) {
 			String[] dato = new String[] {
 					linea.getArticulo().getNombre(), linea.getPrecio() + " €", linea.getUnidades().toString(), linea.getImporte() + " €"
@@ -77,4 +70,15 @@ public class CarritoPanel extends JPanel {
 		
 		labelImporte.setText("IMPORTE TOTAL: " + pedido.getImporte() + "€");
 	}
+	
+	public void deleteRows() {
+		
+		int rowCount = model.getRowCount();
+		//Remove rows one by one from the end of the table
+		for (int i = 0; i < rowCount; i++) {
+		    model.removeRow(i);
+		}
+	}
+	
+	
 }
