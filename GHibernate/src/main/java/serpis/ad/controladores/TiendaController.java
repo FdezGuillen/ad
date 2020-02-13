@@ -67,8 +67,6 @@ public class TiendaController {
 	
 	public static void showPedidos() {
 
-		
-		
 		String pedidosTitle = TiendaGUI.getPedidosTitle();
 		TiendaGUI.changePanelesCard(pedidosTitle);
 		
@@ -160,8 +158,9 @@ public class TiendaController {
 			PedidoDAO.delete(pedidos.get(index));
 			JOptionPane.showMessageDialog(null,
 					"Pedido eliminado con éxito");
-			pedidos.clear();
-			showPedidos();
+			TiendaGUI.getPedidosPanel().emptyDetailData();
+//			pedidos.clear();
+//			showPedidos();
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null,
 					"ERROR. Vuelve a intentarlo más tarde");

@@ -17,8 +17,9 @@ class ButtonEditor extends DefaultCellEditor {
     protected JButton button;
     private String label;
     private boolean isPushed;
-
     private int pushedRow;
+    
+    
     public ButtonEditor(JCheckBox checkBox) {
         super(checkBox);
         button = new JButton();
@@ -51,14 +52,16 @@ class ButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-        	int res = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar este pedido?", 
-        			"Eliminar pedido",
-        		      JOptionPane.YES_NO_OPTION,
-        		      JOptionPane.PLAIN_MESSAGE);
-        		      if(res == 0) {
-        		    	 PedidosPanel.removeRow(pushedRow);
-        		         TiendaController.eliminarPedido(pushedRow);
-        		      } 
+//        	int res = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar este pedido?", 
+//        			"Eliminar pedido",
+//        		      JOptionPane.YES_NO_OPTION,
+//        		      JOptionPane.PLAIN_MESSAGE);
+//        		      if(res == 0) {
+//        		    	  
+//        		      PedidosPanel.removeRow(pushedRow);
+//       		    	  TiendaController.eliminarPedido(pushedRow);
+//        		         
+//        		      } 
         }
         isPushed = false;
         return label;

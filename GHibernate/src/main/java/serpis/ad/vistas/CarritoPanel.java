@@ -75,7 +75,7 @@ public class CarritoPanel extends JPanel {
 		
 		int rowCount = model.getRowCount();
 		//Remove rows one by one from the end of the table
-		for (int i = 0; i < rowCount; i++) {
+		for (int i = rowCount-1; i >= 0; i--) {
 		    model.removeRow(i);
 		}
 	}
