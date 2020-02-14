@@ -50,6 +50,7 @@ public class Pedido {
 		for (PedidoLinea pedidoLinea : pedidoLineas)
 			importe = importe.add(pedidoLinea.getImporte());
 	}
+	
 	public BigDecimal getImporte() {
 		preGetImporte();
 		return importe;
@@ -57,6 +58,7 @@ public class Pedido {
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
 	public List<PedidoLinea> getPedidoLineas() {
 		return pedidoLineas;
 }

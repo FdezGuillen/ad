@@ -285,7 +285,7 @@ public class TiendaGUI {
 		panel.add(labelCliente); // Componentes agregados usando Flow Layout
 		panel.add(botonCarrito);
 		panel.add(botonPedidos);
-		panel.add(botonPrefs);
+		//panel.add(botonPrefs);
 		panel.add(botonLogout);
 		
 		return panel;
